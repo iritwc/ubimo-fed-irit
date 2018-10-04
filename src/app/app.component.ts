@@ -54,7 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
         }
     }
     filter() {
-        return;
         const { from, to } = this;
         console.log(from, to, this.adList)
         const ff = (ad) => {
@@ -75,7 +74,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
         this.adList = this.adList.filter(ff);
         this.markerAdList = this.markerAdList.filter(ff);
-        console.log('after filter', from, to, this.adList)
+        console.log('after filter', from, to, this.adList);
     }
     ngOnInit() {
        this.start();
