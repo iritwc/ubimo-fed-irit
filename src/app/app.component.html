@@ -1,7 +1,7 @@
 <main>
   <aside>
     <header><h1>Ads</h1></header>
-    <input type="time" (click)="filter()" placeholder="from" [value]="from">
+    <input type="time"  (click)="filter()" placeholder="from" [value]="from">
     <input type="time" (click)="filter()" placeholder="to" [value]="to">
     <p *ngIf="adList.length === 0">No ad events {{adList.length}}.</p>
     <ul class="ad-list">
@@ -14,7 +14,7 @@
   </ul>
   </aside>
   <article class="map">
-    <div class="marker" *ngFor="let marker of markerAdList" [style.top]="marker.coordinates.y-70+'px'" [style.left]="marker.coordinates.x-40+'px'" >
+    <div class="marker" *ngFor="let marker of markerAdList" [style.top]="marker.coordinates.y+'px'" [style.left]="marker.coordinates.x+'px'" >
       <video width="100%" height="100%" *ngIf="marker.type==='VIDEO'" controls>
         <source [src]="marker.creative.url" type="video/mp4">
         <p>Your browser doesn't support HTML5 video. Here is a <a href="marker.creative.url">link to the video</a> instead.</p>

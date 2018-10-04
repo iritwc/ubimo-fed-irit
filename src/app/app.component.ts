@@ -24,8 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
     markerAdList: IAdEventData[] = [];
     mapWidth = MAP_WIDTH;
     mapHeight = MAP_HEIGHT;
-    from = 0;
-    to: number = Date.now();
+    from: number;
+    to: number;
     constructor() {}
     start() {
         if (this.adSubscriber == null) {
