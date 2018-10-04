@@ -1,8 +1,8 @@
 <main>
   <aside>
     <header><h1>Ads</h1></header>
-    <button (click)="start()">Start :)</button>
-    <button (click)="stop()">Stop Ads!</button>
+    <input type="time" (click)="filter()" placeholder="from" [value]="from">
+    <input type="time" (click)="filter()" placeholder="to" [value]="to">
     <p *ngIf="adList.length === 0">No ad events {{adList.length}}.</p>
     <ul class="ad-list">
       <li class="ad-item" *ngFor="let adEvent of adList">

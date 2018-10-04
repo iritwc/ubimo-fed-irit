@@ -18,13 +18,14 @@ export class MarkerAdsPipe implements PipeTransform {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'ubimo-fed-ha-irit';
-  adSubscriber = null;
-  adList: IAdEventData[] = [];
-  markerAdList: IAdEventData[] = [];
+    title = 'ubimo-fed-ha-irit';
+    adSubscriber = null;
+    adList: IAdEventData[] = [];
+    markerAdList: IAdEventData[] = [];
     mapWidth = MAP_WIDTH;
     mapHeight = MAP_HEIGHT;
-
+    from = 0;
+    to: number = Date.now();
     constructor() {}
     start() {
         if (this.adSubscriber == null) {
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 // Insert date descending
                 this.adList.unshift(ed);
                 this.markerAdList.push(ed);
+                // this.filter();
                 setTimeout(() => {
                     ed.show = false;
                     // Filter ads for map
@@ -50,6 +52,30 @@ export class AppComponent implements OnInit, OnDestroy {
             this.adSubscriber.removeListener();
             this.adSubscriber = null;
         }
+    }
+    filter() {
+        return;
+        const { from, to } = this;
+        console.log(from, to, this.adList)
+        const ff = (ad) => {
+            const date = ad.time;
+            if (Number.isInteger(from)) {
+                if (Number.isInteger(to)) {
+                    return from < date && date < to;
+                } else {
+                    return from < date;
+                }
+            } else {
+                if (Number.isInteger(to)) {
+                    return date < to;
+                } else {
+                    return true;
+                }
+            }
+        }
+        this.adList = this.adList.filter(ff);
+        this.markerAdList = this.markerAdList.filter(ff);
+        console.log('after filter', from, to, this.adList)
     }
     ngOnInit() {
        this.start();
